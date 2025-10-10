@@ -1,0 +1,4 @@
+export const defaultPaginationParams = {
+  page: 1,
+  page_size: 10
+};

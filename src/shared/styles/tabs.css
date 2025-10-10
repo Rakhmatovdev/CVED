@@ -1,0 +1,10 @@
+.tabs-container .ant-tabs-nav-list {
+  width: 100%;
+  justify-content: space-between;
+}
+.tabs-container .ant-tabs-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}

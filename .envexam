@@ -1,0 +1,142 @@
+VITE_BACKEND_HOST=https://ovir-api.xdevs.uz
+#VITE_BACKEND_HOST=https://immigrant.jprq.site
+#VITE_BACKEND_HOST=https://immigrant1.jprq.site
+VITE_API_VERSION=api/v1
+VITE_DEV_MODE=false
+
+✅ feat (feature)
+Yangi funksiyani qo‘shganda ishlatiladi.
+
+📌 Qachon yoziladi:
+
+Yangi tugma qo‘shding
+
+Yangi sahifa yaratding
+
+Foydalanuvchi uchun yangi imkoniyat qo‘shding
+
+🔹 Misol: feat: add user login page
+
+✅ fix (bug fix)
+Xatolikni tuzatganda ishlatiladi.
+
+📌 Qachon yoziladi:
+
+Noto‘g‘ri hisob-kitob
+
+Sahifa ochilmayapti
+
+API noto‘g‘ri ma’lumot qaytaryapti
+
+🔹 Misol: fix: correct total price calculation
+
+✅ docs (documentation)
+Hujjat, README, kommentariyani o‘zgartirganda yoziladi.
+
+📌 Qachon yoziladi:
+
+README faylga o‘zgartirish
+
+Kodga izoh qo‘shding
+
+API hujjatini yangilading
+
+🔹 Misol: docs: update installation instructions
+
+✅ style
+Kodning ko‘rinishini tuzating (lekin funksiyasini emas).
+
+📌 Qachon yoziladi:
+
+Bo‘sh joylar (whitespace)
+
+Formatlash
+
+Punktuatsiya
+
+ESLint hatolarini to‘g‘rilash
+
+🔹 Misol: style: fix indentation and semicolons
+
+✅ refactor
+Kod strukturasi o‘zgartirilgan, lekin funksiyasi o‘zgarmagan.
+
+📌 Qachon yoziladi:
+
+Kodni soddalashtirding
+
+Funktsiyani modullar bo‘lib ajratding
+
+Kodni qayta tashkil qilding
+
+🔹 Misol: refactor: split utils into separate files
+
+✅ perf (performance)
+Ishlash tezligini yaxshilovchi o‘zgarishlar.
+
+📌 Qachon yoziladi:
+
+Algoritmni tezlashtirding
+
+Keraksiz hisoblashlarni olib tashlading
+
+Cache ishlatding
+
+🔹 Misol: perf: improve loading time on homepage
+
+✅ test
+Test yozganda yoki testni o‘zgartirganda ishlatiladi.
+
+📌 Qachon yoziladi:
+
+Unit test qo‘shding
+
+Jest, Mocha testlarini o‘zgartirding
+
+Coverage oshirding
+
+🔹 Misol: test: add tests for user service
+
+✅ build
+Build jarayoniga taalluqli o‘zgarishlar.
+
+📌 Qachon yoziladi:
+
+Webpack, Vite sozlamasini o‘zgartirding
+
+Build skriptlar bilan ishlading
+
+🔹 Misol: build: update webpack config for production
+
+✅ ci (continuous integration)
+CI/CD jarayoni (GitHub Actions, Travis CI) bilan bog‘liq o‘zgarishlar.
+
+📌 Qachon yoziladi:
+
+.github/workflows fayllarini o‘zgartirding
+
+CI skript yozding
+
+🔹 Misol: ci: add lint check in CI pipeline
+
+✅ chore (mayda texnik ishlar)
+Kodga ta'sir qilmaydigan umumiy texnik o‘zgarishlar.
+
+📌 Qachon yoziladi:
+
+Paketlar versiyasini yangilading
+
+.gitignore o‘zgartirding
+
+Folder nomini almashtirding
+
+🔹 Misol: chore: update dependencies
+
+✅ revert
+Oldingi commitni bekor qilish uchun ishlatiladi.
+
+📌 Qachon yoziladi:
+
+Noto‘g‘ri o‘zgarishni orqaga qaytarding
+
+🔹 Misol: revert: remove login validation logic

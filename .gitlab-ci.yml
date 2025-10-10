@@ -1,0 +1,44 @@
+stages:
+  - build
+  - dev
+
+build-dev:
+  stage: dev
+  only:
+    - jasurbek
+    - development
+    #- merge_requests
+  tags:
+    - frontend
+  script:
+    - cd /var/www/ovir/frontend/
+    - pwd
+    - whoami
+    - git clean -fd
+    - git stash
+    - git pull origin jasurbek
+    - npm install --force
+    - npm run build
+    - find ./dist -type d -exec chmod 755 {} \;
+    - find ./dist -type f -exec chmod 644 {} \;
+cache:
+  paths:
+    - node_modules/
+
+build-prod:
+  stage: build
+  only:
+    - main
+
+  tags:
+    - frontend
+  script:
+    - cd /home/front
+    - pwd
+    - whoami
+    - git pull origin production || fail
+    - yarn install
+    - yarn build
+  cache:
+    paths:
+      - node_modules/
