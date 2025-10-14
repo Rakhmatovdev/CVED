@@ -2,7 +2,7 @@ import { Input, InputRef, Spin } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import { LoginInputs } from "src/pages/auth/type";
 import { useDebounce } from "use-debounce";
 import { usePostLogin } from "@/entities/auth/api/post-login.ts";
@@ -11,7 +11,6 @@ import eyemy from "@/shared/ui/icons/sufix/eye.svg";
 import eyemyo from "@/shared/ui/icons/sufix/eyeo.svg";
 import eovir from "/logo/EOVIRL.svg";
 import gerb from "/logo/gerb.svg";
-import uzinfocom from "/static/uzinfocom-logo.svg";
 
 export default function Login() {
   // Helpers
@@ -230,16 +229,7 @@ export default function Login() {
         </div>
       </div>
       <div className="absolute z-10 blur-sky" />
-      <div className="absolute flex text-white !bottom-4 w-full justify-center z-10 gap-2 items-center powered">
-        <p className="font-light text-white/50 mt-[2px]">Powered by</p>
-        <Link to="https://uzinfocom.uz/" target="_blank">
-          <img
-            className="cursor-pointer"
-            src={uzinfocom}
-            alt="creator and designer"
-          />
-        </Link>
-      </div>
+
     </div>
   );
 }

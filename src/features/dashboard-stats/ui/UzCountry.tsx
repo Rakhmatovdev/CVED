@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CustomBadge from "@/shared/ui/CustomBadge";
@@ -110,13 +109,12 @@ const UzCountry = () => {
     });
   };
 
-  const thisYear = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="card_main p-4 w-1/2 transition">
+    <div className="card_main p-4 w-1/2 transition dark:bg-[#181B29]">
       <div className="space-y-2 mb-4">
         <h2 className="text-xl transition 2xl:text-2xl font-semibold text-grayed dark:text-white">
-          {t("statics.uz_for")} {dayjs(thisYear).format("MM.dd.yyy")}{" "}
+          {t("statics.uz_for")}
           {t("statics.uz_by")}
         </h2>
         <CustomBadge>{t("statics.realtime")}</CustomBadge>

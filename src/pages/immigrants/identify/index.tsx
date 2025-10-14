@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { CommonPageWrapper } from "@/app/layouts/page-wrapper.tsx";
 import ArmFilterForm from "@/pages/immigrants/identify/form";
-import ModalCreate from "@/pages/immigrants/identify/modal/ModalCreate.tsx";
 import { endpoints } from "@/shared/api/endpoints";
 import { useFetchData } from "@/shared/hooks/use-fetch";
 import { useFilters } from "@/shared/hooks/use-filters";
@@ -82,7 +81,6 @@ const Arm = () => {
           onChange={setActiveKey}
         />
       </CommonPageWrapperCard>
-      <ModalCreate refetch={formMethods.reset} />
     </CommonPageWrapper>
   );
 };

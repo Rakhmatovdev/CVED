@@ -5,7 +5,6 @@ import {
   Dropdown,
   Flex,
   MenuProps,
-  Modal,
   notification,
   TableColumnsType,
   TableProps
@@ -21,16 +20,12 @@ import DotsIcon from "@/shared/ui/icons/DotsIcon.tsx";
 import PencilIcon from "@/shared/ui/icons/PencilIcon.tsx";
 import TrashIcon from "@/shared/ui/icons/TrushIcon.tsx";
 import { formatDate } from "@/utils/formatDate.ts";
-import UpdateModal from "../modal/UpdateModal.tsx";
 import Row from "@/shared/ui/Row.tsx";
 
 type AttachVariables = { id: string | number; pid: string | number };
 
 const ArmDetail = () => {
   const navigate = useNavigate();
-
-  const [update, setUpdate] = useState(false);
-  const [onliData, setOnliData] = useState({});
   const { id } = useParams();
   const { t } = useTranslation();
   const {
@@ -61,7 +56,6 @@ const ArmDetail = () => {
   const {
     data: immigrant,
     isPending: immigrantPending,
-    refetch: refetchImmigrant
   } = useQuery({
     queryKey: ["immigrant2", id, isSuccess],
     queryFn: () => ImmigrantService.getImmigrant(id ?? ""),
@@ -126,9 +120,6 @@ const ArmDetail = () => {
     // }
   };
 
-  const handleChange = ( record: any) => {
-    setOnliData(record);
-  };
 
 
   const items: MenuProps["items"] = [
@@ -136,7 +127,6 @@ const ArmDetail = () => {
       label: (
         <div
           className="flex items-center gap-2 !hover:text-secondary"
-          onClick={() => setUpdate(true)}
         >
           <PencilIcon className={"dark:text-white text-secondary"} />
           <p className="text-[#232E40 text-sm font-medium dark:text-white">
@@ -225,12 +215,12 @@ const ArmDetail = () => {
       title: "",
       dataIndex: "edit&delete",
       width: 80,
-      render: (_, record) => (
+      render: () => (
         <div className="text-center dark:text-white">
           <Dropdown menu={{ items }} trigger={["click"]}>
             <button
               type="button"
-              onClick={() => handleChange(record?.id)}
+
             >
               <DotsIcon
                 className={
@@ -272,7 +262,7 @@ const ArmDetail = () => {
       }
     },
     {
-      title: <p className="table_th">{t("table.kogg")}</p>,
+      title: <p className="table_th">{t("table.cved")}</p>,
       dataIndex: "crossing_type",
       width: 103,
       render: (text) => {
@@ -452,27 +442,6 @@ const ArmDetail = () => {
           </Flex>
         )}
       </Flex>
-     
-
-      <Modal
-        open={update}
-        onCancel={() => setUpdate(false)}
-        title={
-          <p className="text-2xl font-semibold text-secondary dark:text-dvalue ">
-            {t("statics.update_old")}
-          </p>
-        }
-        footer={null}
-        width={756}
-        centered
-        className="custom-modal"
-      >
-        <UpdateModal
-          setUpdate={setUpdate}
-          prevData={onliData}
-          refetchImmigrant={refetchImmigrant}
-        />
-      </Modal>
     </Flex>
   );
 };

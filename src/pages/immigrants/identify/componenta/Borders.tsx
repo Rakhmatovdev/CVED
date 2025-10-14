@@ -57,7 +57,7 @@ const Boarders = (): JSX.Element => {
       }
     },
     {
-      title: <p className="table_th">{t("table.kogg")}</p>,
+      title: <p className="table_th">{t("table.cved")}</p>,
       dataIndex: "crossing_type",
       width: 103,
       render: (text) => {

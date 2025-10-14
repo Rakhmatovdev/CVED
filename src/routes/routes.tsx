@@ -9,11 +9,10 @@ import authRoutes from "@/pages/auth/routes.tsx";
 import dashboardRoutes from "@/pages/dashboard/routes.tsx";
 import homeRoutes from "@/pages/home/routes.tsx";
 import immigrantsRoutes from "@/pages/immigrants/routes.tsx";
-import koggRoutes from "@/pages/kogg/routes.tsx";
 import profileRoutes from "@/pages/profile/routes.tsx";
-import reportRoutes from "@/pages/reports/routes.tsx";
 import { checkUserPermission, Permissions } from "@/shared/config/permissions";
 import type { CustomRoute } from "@/shared/types";
+import cvedRoutes from "@/pages/cved/routes.tsx";
 
 const publicRoutes = [authRoutes];
 
@@ -31,10 +30,8 @@ const protectedRoutes: CustomRoute[] = [
     children: [
       homeRoutes,
       dashboardRoutes,
-    
-      koggRoutes,
+    cvedRoutes,
       immigrantsRoutes,
-      reportRoutes,
       profileRoutes
     ]
   }

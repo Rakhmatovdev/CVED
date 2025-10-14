@@ -22,7 +22,7 @@ export function SidebarFooter() {
       {!collapsed && (
         <Flex vertical className="items-start">
           <div className="text-[#171429] transition dark:text-white text-sm font-semibold leading-[18px]">
-            {t("breadcrumb.user")}
+            {t("CVED")}
           </div>
           <div className="text-[#69757A] transition dark:text-[#B7BFD5] text-xs leading-[15px]">
             {t("breadcrumb.role")}

@@ -20,7 +20,6 @@ type CountryData = {
 
 interface CountryChartProps {
   title?: string;
-  // subtitle?: string;
   data: CountryData[];
   barColor?: string[];
   className?: string;
@@ -30,100 +29,82 @@ interface CountryChartProps {
 
 const MotionRect = motion.rect;
 
-const RoundedBackground = (props: any) => {
-  const { x, y, width, height } = props;
-  const radius = 6;
-  return (
-    <MotionRect
-      x={x}
-      y={y}
-      width={width}
-      height={height}
-      rx={radius}
-      ry={radius}
-      fill="url(#bgPattern)"
-      style={{ transition: "all 0.5s ease-in-out" }}
-    />
-  );
-};
-
 const CountryChartRecharts: React.FC<CountryChartProps> = ({
-  title = "",
-  data,
-  barColor = ["#F5913E", "#FDC775"],
-  className = "",
-  wrapperClassName = "",
-  description
-}) => {
+                                                             title = "",
+                                                             data,
+                                                             barColor = ["#6366F1", "#8B5CF6"],
+                                                             className = "",
+                                                             wrapperClassName = "",
+                                                             description
+                                                           }) => {
   const { isDarkMode } = useDarkMode();
   const maxValue = Math.max(...data.map((d) => d.value));
-  const gradientId = `barGradient-${Math.random().toString(36).substr(2, 9)}`;
+  const gradientId = `barGradient-${Math.random().toString(36).slice(2, 9)}`;
 
   return (
-    <div
-      className={cn("w-full h-full p-4 card_main transition", wrapperClassName)}
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={cn(
+        "w-full h-full p-5 rounded-2xl border dark:border-dborder bg-white dark:bg-[#1C1E2E] shadow-lg hover:shadow-xl transition-all duration-300",
+        wrapperClassName
+      )}
     >
-      <div className=" space-y-2">
-        <h2 className="text-base 2xl:text-2xl transition font-semibold text-grayed dark:text-white">
+      <div className="space-y-2 mb-4">
+        <h2 className="text-lg 2xl:text-2xl font-semibold text-[#1E293B] dark:text-white transition-all">
           {title}
         </h2>
-        {description}
+        {description && (
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            {description}
+          </p>
+        )}
       </div>
 
       <div
         className={cn(
-          "w-full transition-all h-[357px] 2xl:h-[500px] overflow-y-auto",
+          "w-full h-[357px] 2xl:h-[480px] overflow-y-auto transition-all",
           className
         )}
       >
-        <ResponsiveContainer width="100%" height={data.length * 40}>
+        <ResponsiveContainer width="100%" height={data.length * 44}>
           <BarChart
             data={data}
             layout="vertical"
-            barCategoryGap="12px"
-            barGap={12}
-            height={data.length * 40}
+            barCategoryGap="16px"
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
           >
             <CartesianGrid
-              strokeDasharray="2 2"
+              strokeDasharray="3 3"
               horizontal={false}
-              stroke="#D1D5DB"
-              vertical={false}
-              style={{ transition: "all 0.4s ease-in-out" }}
+              stroke={isDarkMode ? "#2A2C3D" : "#E2E8F0"}
             />
-            <XAxis
-              type="number"
-              hide
-              domain={[0, maxValue]}
-              style={{ transition: "all 0.4s ease-in-out" }}
-            />
+
+            <XAxis type="number" hide domain={[0, maxValue]} />
             <YAxis
               type="category"
-              style={{ transition: "all 0.4s ease-in-out" }}
               dataKey="name"
-              width={100}
               tick={{
-                fontSize: 14,
                 textAnchor: "start",
-                fill: isDarkMode ? "#fff" : "#232E40",
-                fontWeight: 600,
-                dy: 0
+                fontWeight: 0,
+                fontSize:0,
               }}
               axisLine={false}
               tickLine={false}
-              tickMargin={90}
             />
+
             <Tooltip
+              cursor={{ fill: isDarkMode ? "#1E2233" : "#F8FAFC", radius: 6 }}
               contentStyle={{
-                background: "#FFFFFF",
-                border: "1px solid #E5E7EB",
-                borderRadius: "6px",
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                display: "flex",
-                gap: "6px",
-                alignItems: "center",
-                justifyContent: "center"
+                background: isDarkMode ? "#1E2233" : "#FFFFFF",
+                border: "1px solid rgba(148,163,184,0.2)",
+                borderRadius: "8px",
+                boxShadow:
+                  "0 4px 12px rgba(0, 0, 0, 0.08), inset 0 -1px 0 rgba(255,255,255,0.05)",
+                color: isDarkMode ? "#E5E7EB" : "#0F172A",
+                fontSize: "14px",
+                padding: "8px 12px"
               }}
               formatter={(value: number) => [
                 new Intl.NumberFormat("ru-RU").format(value)
@@ -131,42 +112,37 @@ const CountryChartRecharts: React.FC<CountryChartProps> = ({
             />
 
             <defs>
-              <pattern
-                id="bgPattern"
-                patternUnits="userSpaceOnUse"
-                width="12"
-                height="12"
-                patternTransform="rotate(-45)"
-              >
-                <rect
-                  width="12"
-                  height="12"
-                  fill={isDarkMode ? "#1F2136" : "#F4F6FB"}
-                  style={{ transition: "all 0.4s ease-in-out" }}
-                />
-                <rect
-                  width="6"
-                  height="12"
-                  fill={isDarkMode ? "#181929" : "#ECEFF1"}
-                  style={{ transition: "all 0.4s ease-in-out" }}
-                />
-              </pattern>
-
               <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor={barColor[0]} />
-                <stop offset="100%" stopColor={barColor[1] || barColor[0]} />
+                <stop offset="100%" stopColor={barColor[1]} />
               </linearGradient>
+
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
 
             <Bar
               dataKey="value"
               barSize={28}
-              radius={[6, 6, 6, 6]}
+              radius={[8, 8, 8, 8]}
+              style={{ filter: "url(#glow)" }}
               shape={(props) => (
-                <rect {...props} rx={6} ry={6} fill={`url(#${gradientId})`} />
+                <MotionRect
+                  {...props}
+                  rx={8}
+                  ry={8}
+                  fill={`url(#${gradientId})`}
+                  whileHover={{
+                    scale: 1.03,
+                    transition: { duration: 0.2 }
+                  }}
+                />
               )}
-              background={<RoundedBackground />}
-              style={{ transition: "all 0.4s ease-in-out" }}
             >
               <LabelList
                 dataKey="value"
@@ -176,16 +152,15 @@ const CountryChartRecharts: React.FC<CountryChartProps> = ({
                 }
                 style={{
                   fontSize: "14px",
-                  fill: isDarkMode ? "#fff" : "#232E40",
-                  fontWeight: 600,
-                  transition: "all 0.5s ease-in-out"
+                  fill: isDarkMode ? "#E5E7EB" : "#0F172A",
+                  fontWeight: 600
                 }}
               />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

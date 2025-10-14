@@ -4,16 +4,12 @@ import {
   CountryChartRecharts,
   DaysLivedApexChart,
   DonutChart,
-  GuestChart,
   Maxmin,
-  PureGuestsChart,
   SendService,
   ServerLoadApexChart,
   UzCountry
 } from "@/features/dashboard-stats";
-import { cn } from "@/shared/lib/utils.ts";
 import CustomBadge from "@/shared/ui/CustomBadge";
-import RoundEffectIcon from "@/shared/ui/icons/dashboard/RoundEffect.tsx";
 import TeamIcon from "@/shared/ui/icons/dashboard/TeamIcon.tsx";
 
 const Dashboard = () => {
@@ -53,20 +49,6 @@ const Dashboard = () => {
     { name: "Хорватия", value: 890123 }
   ];
 
-  const pureData = [
-    { name: t("month.january"), foreigners: 200000, locals: 30000 },
-    { name: t("month.february"), foreigners: 80000, locals: 120000 },
-    { name: t("month.march"), foreigners: 30000, locals: 130000 },
-    { name: t("month.april"), foreigners: 90000, locals: 250000 },
-    { name: t("month.may"), foreigners: 110000, locals: 80000 },
-    { name: t("month.june"), foreigners: 180000, locals: 200000 },
-    { name: t("month.july"), foreigners: 50000, locals: 50000 },
-    { name: t("month.august"), foreigners: 200000, locals: 50000 },
-    { name: t("month.september"), foreigners: 100000, locals: 30000 },
-    { name: t("month.october"), foreigners: 190000, locals: 50000 },
-    { name: t("month.november"), foreigners: 90000, locals: 40000 },
-    { name: t("month.december"), foreigners: 21000, locals: 1000 }
-  ];
 
   const team = [
     {
@@ -115,65 +97,75 @@ const Dashboard = () => {
     return num.toLocaleString("ru-RU");
   };
 
-  const cls = (item: { key: string }) => {
-    return cn(
-      "flex transition items-center rounded-md gap-2 py-0.5 px-2",
-      "dark:bg-opacity-10",
-      item.key === "users" &&
-        "bg-[#2CBE881A] text-emeraldGreen dark:bg-[#2CBE881A] dark:text-emeraldGreen",
-      item.key === "write" &&
-        "bg-[#FFFBEB] text-mistyGray dark:bg-mistyGray dark:text-offWhite",
-      item.key === "guest" &&
-        "bg-[#FFFBEB] text-mistyGray dark:bg-mistyGray dark:text-offWhite"
-    );
-  };
 
   return (
     <div className="p-6 space-y-4 w-full bg-white dark:bg-darkBlue transition-colors duration-500">
-      <Flex gap={16}>
+      <Flex gap={20}  className={' '}>
         {team.map((item) => (
           <div
-            className="border transition w-full relative overflow-hidden px-4 py-4 rounded-2xl dark:border-dborder flex justify-between  dark:bg-slateBlue shadow-card bg-white"
             key={item.id}
+            className={`
+        group relative overflow-hidden w-full md:w-[48%] lg:w-[32%]
+        p-5 rounded-2xl border transition-all duration-300 
+        dark:border-dborder border-gray-200
+        bg-gradient-to-br from-white via-white to-gray-50
+        dark:from-slateBlue dark:via-slateBlue dark:to-darkBlue
+        shadow-md hover:shadow-lg hover:-translate-y-1
+        flex justify-between items-start
+      `}
           >
-            <div className="absolute transition left-0 top-0 w-44 h-44">
-              <RoundEffectIcon fillColor={item.team_color} />
-            </div>
-            <div>
-              <div className="p-3 transition border dark:border-dborder bg-white dark:bg-darkBlue z-10 rounded-xl w-12 h-12 flex items-center justify-center border-snowGray shadow-card">
-                <TeamIcon strokeColor={item.team_color} height={16} />
+            {/* background decorative blur */}
+            <div
+              className="absolute left-0 top-0 w-44 h-44 opacity-50 blur-2xl transition-all duration-500 group-hover:opacity-70"
+              style={{ backgroundColor: item.team_color }}
+            />
+
+            {/* Left side */}
+            <div className="relative z-10">
+              <div
+                className="p-3 rounded-xl border border-gray-100 dark:border-dborder
+          bg-white/60 dark:bg-darkBlue/60 shadow-inner backdrop-blur-sm
+          flex items-center justify-center w-12 h-12 transition-all duration-300
+          group-hover:scale-105"
+              >
+                <TeamIcon strokeColor={item.team_color} height={18} />
               </div>
+
               <div className="mt-6">
-                <p className="text-lighter transition text-sm font-medium dark:text-dtext">
+                <p className="text-sm font-medium text-lighter dark:text-dtext transition-all duration-200">
                   {item.name}
                 </p>
-                <p className="mt-1 transition text-grayed font-semibold text-2xl 3xl:text-3xl dark:text-white">
+                <p className="mt-1 text-3xl font-semibold text-grayed dark:text-white">
                   {formatNumber(item.value)}
                 </p>
               </div>
             </div>
-            <div className="flex items-end justify-end z-10">
-              <div className={cls(item)}>
-                {item.team_color == "#3276FF" && (
-                  <div className="rounded-full w-2 h-2 bg-emeraldGreen" />
+
+            {/* Right side */}
+            <div className="relative z-10 flex items-end justify-end">
+              <div
+                className={`
+            px-3 py-1 rounded-full flex items-center gap-2
+            text-sm font-medium transition-all duration-200
+            ${
+                  item.team_color === "#3276FF"
+                    ? "bg-emeraldGreen/10 text-emeraldGreen"
+                    : "bg-gray-100 dark:bg-darkBlue text-gray-600 dark:text-white"
+                }
+          `}
+              >
+                {item.team_color === "#3276FF" && (
+                  <span className="w-2 h-2 rounded-full bg-emeraldGreen animate-pulse" />
                 )}
-                <p className={`text-sm font-medium line-clamp-1`}>
-                  {item.status}
-                </p>
+                <p className="line-clamp-1">{item.status}</p>
               </div>
             </div>
           </div>
         ))}
       </Flex>
 
-      <Flex gap={16}>
-        <PureGuestsChart
-          title={t("statics.total_guest")}
-          data={pureData}
-          hasIndicator
-        />
-        <GuestChart />
-      </Flex>
+
+
       <div className="flex transition flex-col 3xl:flex-col-reverse">
         <Maxmin />
         <Flex gap={16}>

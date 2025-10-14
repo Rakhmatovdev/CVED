@@ -460,7 +460,8 @@
     "deposit": "Депозит",
     "self-tourists": "Cам. туристы",
     "self-tourists-long": "Cамостоятельные туристы",
-    "detail": "Подробности"
+    "detail": "Подробности",
+    "cved": "CVED"
   },
   "tabs": {
     "arrival": "Прибытие",

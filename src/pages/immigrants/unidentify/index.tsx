@@ -118,7 +118,7 @@ const NoIdentify = () => {
         )
       },
       {
-        title: t("table.kogg"),
+        title: t("table.cved"),
         dataIndex: "last_crossing_type",
         key: "last_crossing_type",
         width: 100,

@@ -2,14 +2,12 @@ import { Input } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import { InputReset } from "@/pages/auth/type";
 import { AuthManager } from "@/shared/lib/auth-manager.ts";
 import eyemy from "@/shared/ui/icons/sufix/eye.svg";
 import eyemyo from "@/shared/ui/icons/sufix/eyeo.svg";
-import eovir from "/logo/EOVIRL.svg";
 import gerb from "/logo/gerb.svg";
-import uzinfocom from "/static/uzinfocom-logo.svg";
 
 const token = AuthManager.getAccessToken();
 
@@ -59,7 +57,7 @@ export default function Reset() {
                 <div className="space-y-45 md:space-y-6 wrapper p-[100px]">
                   <div className="flex items-center justify-center gap-3">
                     <img src={gerb} alt="logo" className={"w-10 h-10"} />
-                    <img src={eovir} alt="eovir" />
+                   Cyber
                   </div>
                   <div>
                     <h4 className="text-[28px] font-semibold text-center">
@@ -161,16 +159,6 @@ export default function Reset() {
         </div>
       </div>
       <div className={"absolute z-10 blur-sky"} />
-      <div className="absolute flex text-white bottom-4 w-full justify-center lg:bottom-[54px] z-20 gap-2 items-center">
-        <p className="font-light text-white/50">Powered by</p>
-        <Link to="https://uzinfocom.uz/" target="_blank">
-          <img
-            className="cursor-pointer"
-            src={uzinfocom}
-            alt="creator and designer"
-          />
-        </Link>
-      </div>
     </div>
   );
 }

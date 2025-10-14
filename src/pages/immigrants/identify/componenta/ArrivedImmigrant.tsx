@@ -126,7 +126,7 @@ export default function ArrivedImmigrant({
       //   width: 250
       // },
       {
-        title: t("table.kogg"),
+        title: t("table.cved"),
         dataIndex: "last_crossing_type",
         key: "last_crossing_type",
         width: 100,

@@ -28,7 +28,7 @@ const SendService: React.FC = () => {
   const { t } = useTranslation();
   const { isDarkMode } = useDarkMode();
   return (
-    <div className="card_main p-4 transition w-1/2">
+    <div className="card_main p-4 transition w-1/2 dark:bg-[#181B29]">
       <div className="space-y-2 mb-4">
         <h2 className="text-xl 2xl:text-2xl transition font-semibold mb-2 text-grayed dark:text-white ">
           {t("statics.send_veb")}
