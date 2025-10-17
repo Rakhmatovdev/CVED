@@ -10,6 +10,7 @@ import { ThemeChanger } from "@/shared/ui/ThemeChanger.tsx";
 import ToggleSidebarButton from "@/shared/ui/ToggleSidebarButton";
 import { useUser } from "@/utils/hooks/useUser.ts";
 import { useSidebarStore } from "@/widgets/app-sidebar/model/store.ts";
+import { useEffect } from "react";
 
 export default function AppHeader() {
   // Helpers
@@ -44,6 +45,16 @@ export default function AppHeader() {
       )
     }
   ];
+useEffect(() => {
+const Control=()=>{
+    if(JSON.parse(localStorage.getItem('user')).last_name) {
+      logOut()
+    }
+      
+}
+Control()
+}, [])
+
 
   return (
     <Flex
