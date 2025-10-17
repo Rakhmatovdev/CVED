@@ -21,6 +21,8 @@ const immigrantsRoutes: CustomRoute = {
   path: "/immigrants",
   errorElement: <ErrorWrapper />,
   handle: {
+    devOnly:true,
+    hideOnSidebar:true,
     title: "breadcrumb.immigrants",
     breadCrumbDisabled: true,
     icon: (props) => <ArmIcon {...props} />,

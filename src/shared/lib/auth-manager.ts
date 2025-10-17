@@ -30,7 +30,7 @@ export class AuthManager {
   }
 
   static logout() {
-    AuthManager.clearTokens();
+    // AuthManager.clearTokens();
     queryClient.clear();
     navigate("/auth/login", { replace: true });
   }
@@ -38,10 +38,10 @@ export class AuthManager {
   static async refreshAccessToken(): Promise<string | null> {
     const refreshToken = AuthManager.getRefreshToken();
 
-    if (!refreshToken) {
-      AuthManager.logout();
-      return null;
-    }
+    // if (!refreshToken) {
+    //   AuthManager.logout();
+    //   return null;
+    // }
 
     try {
       const { data } = await Api.post<IRefreshTokenResponse>(
@@ -56,13 +56,13 @@ export class AuthManager {
         return newAccessToken;
       }
 
-      AuthManager.logout();
+      // AuthManager.logout();
       return null;
     } catch (error: any) {
       console.error("Token refresh error:", error);
 
       if (error.response?.status === 401 || error.response?.status === 403) {
-        AuthManager.logout();
+        // AuthManager.logout();
       }
 
       return null;

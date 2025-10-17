@@ -5,8 +5,8 @@ export type Endpoint<T> = {
 
 export const endpoints = {
   auth: {
-    signIn: "/users/sign-in/",
-    refresh: "/users/refresh/"
+    signIn: "1/users/sign-in/",
+    refresh: "121/users/refresh/"
   },
   users: {
     base: "/users/",
